@@ -3,6 +3,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
 /**
@@ -153,5 +154,74 @@ public final class Redistrictor implements java.io.Serializable {
                                     final Region theRegion,
                                     final int districtSize) {
         return allDistrictsOfSpecificSize(theRegion, districtSize).iterator();
+    }
+    
+    /**
+     * Creates a graph out of a given region,
+     * using locations as vertices and connecting
+     * locations to any other location with a position
+     * which is ((x + 1) OR (x - 1)) XOR ((y + 1) OR (y - 1))
+     * from itself.
+     * <p>
+     * Returns the graph in the form of a HashMap with locations
+     * as keys and the set of locations they are connected to
+     * as values.
+     * @TODO Implement functionality as described
+     * @param input The region to generate a graph from.
+     * @return A HashMap of locations, with values of the locations 
+     *         they are connected to.
+     */
+    protected HashMap<Location, HashSet<Location>> generateGraphFromRegion(final Region input){
+    	return null;
+    }
+    
+    /**
+     * Returns a set of all contiguous sets of locations
+     * contained within a given graph. Consequently, if
+     * the entire graph is contiguous the returned set
+     * will only have one element, which is the set of
+     * all locations in the graph.
+     * <p>
+     * In practice, inputSet represents a graph with the
+     * same connections as specified in inputGraph, except
+     * only connections that connect locations within
+     * inputSet are considered valid.
+     * @TODO Implement functionality as described
+     * @param inputGraph The overall graph of which inputSet represents a subgraph
+     * @param inputSet The set of locations which defines a subgraph of inputGraph
+     * @return A set containing all contiguous sets of locations within 
+     *         the graph represented by inputSet.
+     */
+    protected HashSet<HashSet<Location>> subDivideGraph(
+    									final HashMap<Location, HashSet<Location>> inputGraph,
+    									final Set<Location> inputSet){
+    	return null;
+    }
+    
+    /**
+     * Checks to see if it is hypothetically possible 
+     * for a given graph to be divided into districts
+     * of a specified size. This is done by assuming
+     * that inputSet acts as a subgraph of inputGraph.
+     * Therefore, inputSet represents a graph with the
+     * same connections as specified in inputGraph, except
+     * only connections that connect locations within
+     * inputSet are considered valid.
+     * <p>
+     * Functionally, this means that all contiguous
+     * subgraphs of the graph represented by inputSet possess
+     * a number of locations which is divisible by the 
+     * specified district size.
+     * @TODO Implement functionality as described
+     * @param inputGraph The graph for which inputSet defines a subgraph
+     * @param inputSet The set of locations specifying the subgraph of inputGraph
+     * @param districtSize The size of the desired districts
+     * @return True if all contiguous subgraphs of the graph defined by inputSet
+     *         are divisible by districtSize
+     */
+    protected boolean redistrictingPossible(final HashMap<Location, HashSet<Location>> inputGraph,
+    									final Set<Location> inputSet,
+    									final int districtSize) {
+    	return false;
     }
 }
