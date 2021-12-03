@@ -265,5 +265,37 @@ public class RedistrictorTest {
             assertTrue(d.contiguityValid(), "Contiguity error for district " + d);
         }
     }
+
+    @Test
+    public void generateNonContiguousRegionDistrictContiguityTest(){
+        Location location1 = new Location (0,0);
+        Location location2 = new Location (1,0);
+        Location location3 = new Location (0,2);
+        Location location4 = new Location (1,2);
+
+        Voter voter1 = new Voter(Party.NONE, location1);
+        Voter voter2 = new Voter(Party.NONE, location2);
+        Voter voter3 = new Voter(Party.NONE, location3);
+        Voter voter4 = new Voter(Party.NONE, location4);
+
+        Set<Location> locationSet = new HashSet<Location>();
+        locationSet.add(location1);
+        locationSet.add(location2);
+        locationSet.add(location3);
+        locationSet.add(location4);
+
+        Set<Voter> voterSet = new HashSet<Voter>();
+        voterSet.add(voter1);
+        voterSet.add(voter2);
+        voterSet.add(voter3);
+        voterSet.add(voter4);
+
+        Region region = new Region(locationSet, voterSet);
+
+        Set<District> districtSet = Redistrictor.generateDistricts(region, 2);
+
+        District district1 = districtSet.iterator().next();
+        assertTrue(district1.contiguityValid());
+    }
 }
 
